@@ -2,7 +2,7 @@
 
 namespace AlonePhp\Telegram\Bot;
 
-trait Send{
+trait Send {
     /**
      * 发送付费媒体
      * 使用此方法向频道聊天发送付费媒体。成功后，将返回已发送的消息。
@@ -114,6 +114,24 @@ trait Send{
             'reply_markup'//额外的界面选项。内联键盘的JSON序列化对象、自定义回复键盘、删除回复键盘或强制用户回复的说明
         ], $this->reply_markup($conf));
         return $this->curl('sendMessage', $data);
+    }
+
+    /**
+     * 发送信息删除键盘
+     * @param string $content
+     * @param bool   $selective false表示对所有用户生效，true表示只对特定用户生效
+     * @return $this
+     */
+    public function deleteMessageReplyMarkup(string $content, bool $selective = false): static {
+        $conf = [
+            'chat_id'      => $this->chat_id,
+            'text'         => $content,
+            'reply_markup' => json_encode([
+                'remove_keyboard' => true,
+                'selective'       => $selective
+            ])
+        ];
+        return $this->curl('editMessageReplyMarkup', $conf);
     }
 
     /**
