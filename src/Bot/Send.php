@@ -131,7 +131,7 @@ trait Send {
                 'selective'       => $selective
             ])
         ];
-        return $this->curl('editMessageReplyMarkup', $conf);
+        return $this->curl('sendMessage', $conf);
     }
 
     /**
@@ -377,6 +377,24 @@ trait Send {
             'reply_markup',
         ], $this->reply_markup($conf));
         return $this->curl('sendPoll', $data);
+    }
+
+    /**
+     * 停止投票
+     * https://core.telegram.org/bots/api#stoppoll
+     * @param array $conf
+     * @return $this 发判成功可以保存result.poll.id
+     */
+    public function stopPoll(array $conf = []): static {
+        $conf['chat_id'] = $this->chat_id;
+        $conf['message_id'] = $this->message_id;
+        $data = $this->get_conf([
+            'business_connection_id',
+            'chat_id',
+            'message_id',
+            'reply_markup',
+        ], $this->reply_markup($conf));
+        return $this->curl('stopPoll', $data);
     }
 
     /**

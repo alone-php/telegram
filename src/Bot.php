@@ -134,17 +134,20 @@ class Bot {
      * @param array     $list
      * @param int|array $line
      * @param array     $keyboard
+     * @param bool      $merge
      * @return $this
      */
-    public function set_keyboard(array $list = [], int|array $line = 2, array $keyboard = []): static {
+    public function set_keyboard(array $list = [], int|array $line = 2, array $keyboard = [], bool $merge = true): static {
+        $keyboard = $merge ? array_merge([
+            'is_persistent'     => true,
+            // 是否为一次性键盘
+            'one_time_keyboard' => false,
+            // 自适应键盘大小
+            'resize_keyboard'   => true,
+            // false表示对所有用户生效，true表示只对特定用户生效
+            'selective'         => false
+        ], $keyboard) : $keyboard;
         if (!empty($list)) {
-            $keyboard = !empty($keyboard)
-                ? $keyboard
-                : [
-                    'one_time_keyboard' => false,
-                    'resize_keyboard'   => true,
-                    'is_persistent'     => true
-                ];
             $reply_markup = static::arrayLine($list, $line);
             $keyboard['keyboard'] = $reply_markup;
         }
