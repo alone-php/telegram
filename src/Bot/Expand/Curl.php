@@ -41,8 +41,6 @@ trait Curl{
         $this->body = [];
         $this->request = [];
         $this->set_inline();
-        $this->query_id(null);
-        $this->message_id(null);
         $multi = curl_multi_init();
         foreach ($arr as $k => $v) {
             $v['url'] = trim($this->url, '/') . '/bot' . $this->key . '/' . trim(trim($v['path']), '/');
