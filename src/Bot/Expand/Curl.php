@@ -2,7 +2,7 @@
 
 namespace AlonePhp\Telegram\Bot\Expand;
 
-trait Curl{
+trait Curl {
     /**
      * @param string       $path      请求路径
      * @param array|string $data      请求数据
@@ -40,7 +40,7 @@ trait Curl{
         $this->res = [];
         $this->body = [];
         $this->request = [];
-        $this->set_inline();
+        $this->reply_markup = [];
         $multi = curl_multi_init();
         foreach ($arr as $k => $v) {
             $v['url'] = trim($this->url, '/') . '/bot' . $this->key . '/' . trim(trim($v['path']), '/');
