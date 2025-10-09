@@ -2,7 +2,7 @@
 
 namespace AlonePhp\Telegram\Bot;
 
-trait Edit{
+trait Edit {
     /**
      * 编辑按钮
      * 使用此方法仅编辑消息的回复标记。成功后，如果编辑后的消息不是内联消息，则返回已编辑的消息，否则将返回True。请注意，机器人未发送且不包含内联键盘的业务消息只能在发送后48小时内进行编辑。
@@ -194,7 +194,7 @@ trait Edit{
             'media',
             'reply_markup'
         ], $this->reply_markup($conf));
-        return $this->curl('editMessageMedia', $data);
+        return $this->curl('editMessageMedia', json_encode($data), true);
     }
 
     /**
