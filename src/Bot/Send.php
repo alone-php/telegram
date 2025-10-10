@@ -126,6 +126,7 @@ trait Send {
         $conf = [
             'chat_id'      => $this->chat_id,
             'text'         => $content,
+            'parse_mode'   => 'HTML',
             'reply_markup' => json_encode([
                 'remove_keyboard' => true,
                 'selective'       => $selective
