@@ -2,7 +2,7 @@
 
 namespace AlonePhp\Telegram\Bot;
 
-trait Get{
+trait Get {
     /**
      * 获取聊天成员数量
      * 使用此方法获取聊天中的成员数量。成功时返回Int 。
@@ -29,5 +29,17 @@ trait Get{
      */
     public function getChat(): static {
         return $this->curl('getChat', ['chat_id' => $this->chat_id]);
+    }
+
+    /**
+     * 判断成员是否在群
+     * @param string|int $user_id 会员id
+     * @return bool
+     */
+    public function getChatMember(string|int $user_id): bool {
+        $data['chat_id'] = $this->chat_id;
+        (!empty($user_id)) && $data['user_id'] = $user_id;
+        $this->curl('getChatMember', $data);
+        return (!empty($this->array('ok')) && ($this->array('result.user.id') == $user_id));
     }
 }
