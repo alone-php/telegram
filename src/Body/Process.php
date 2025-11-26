@@ -113,6 +113,11 @@ class Process {
         //预检查查询（用于购物）
         'pre_checkout_query',
     ];
+    // 内联id
+    public string|int $inline_id = "";
+
+    // 内联数据
+    public string|int $inline_data = "";
 
     /**
      * Req->post有值 信息是有效的
@@ -340,6 +345,14 @@ class Process {
      */
     protected function inline_query_handle(): static {
         $this->msg_type = 'inline';
+        $this->inline_data = $this->post('query');             //回调信息
+        $this->inline_id = $this->post('id');                  //回调id
+        $this->user_id = $this->post('from.id');               //用户id
+        $this->chat_type = $this->post('chat_type');           //信息类型
+        $this->user_name = $this->post('from.username');       //帐号
+        $this->first_name = $this->post('from.first_name');    //姓
+        $this->last_name = $this->post('from.last_name');      //名
+        $this->lang = $this->post('from.language_code');       //语言
         return $this;
     }
 

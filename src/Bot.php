@@ -7,18 +7,19 @@ use AlonePhp\Telegram\Bot\Get;
 use AlonePhp\Telegram\Bot\Send;
 use AlonePhp\Telegram\Bot\Edit;
 use AlonePhp\Telegram\Bot\Command;
+use AlonePhp\Telegram\Body\Process;
 use AlonePhp\Telegram\Bot\Expand\Curl;
 use AlonePhp\Telegram\Bot\CallbackQuery;
 use AlonePhp\Telegram\Bot\Expand\Method;
 use AlonePhp\Telegram\Bot\Expand\SendArr;
-use AlonePhp\Telegram\Body\Process;
+use AlonePhp\Telegram\Bot\AnswerInlineQuery;
 
 /**
  * TG发送类
  * https://core.telegram.org/bots/api
  */
 class Bot {
-    use Method, Curl, Set, Command, Send, Edit, CallbackQuery, Get, SendArr;
+    use Method, Curl, Set, Command, Send, Edit, CallbackQuery, Get, SendArr, AnswerInlineQuery;
 
     //接口
     public string $url = 'https://api.telegram.org/';
