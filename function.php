@@ -8,7 +8,7 @@ use AlonePhp\Telegram\Body\Process;
  * @param bool   $multi
  * @return Bot
  */
-function alone_bot(string $token, bool $multi = true): Bot {
+function alone_bot(string $token, bool $multi = false): Bot {
     return Bot::tokenApi($token)->multi($multi);
 }
 
