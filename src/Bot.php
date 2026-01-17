@@ -44,7 +44,7 @@ class Bot {
     //设置全局代理
     protected array $ip = [];
     // 是否使用 curl_multi_init
-    protected bool $multi = true;
+    protected bool $multi = false;
     //cache设置
     protected array        $cacheCallback = [];
     protected static array $sendCacheList = [];
