@@ -57,6 +57,7 @@ trait Curl {
             $init = curl_init();
             curl_setopt($init, CURLOPT_URL, $v['url']);
             $curl = static::curl_set($v);
+            $curl = $this->getProxy($curl);
             foreach ($curl as $ck => $cv) {
                 curl_setopt($init, $ck, $cv);
             }
