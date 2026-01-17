@@ -43,6 +43,8 @@ class Bot {
     protected static array $proxy = [];
     //设置全局代理
     protected array $ip = [];
+    // 是否使用 curl_multi_init
+    protected bool $multi = true;
     //cache设置
     protected array        $cacheCallback = [];
     protected static array $sendCacheList = [];
@@ -93,6 +95,16 @@ class Bot {
             'set' => $set,
             'get' => $get,
         ];
+        return $this;
+    }
+
+    /**
+     * 是否使用 curl_multi_init
+     * @param bool $multi
+     * @return $this
+     */
+    public function multi(bool $multi): static {
+        $this->multi = $multi;
         return $this;
     }
 

@@ -36,6 +36,49 @@ trait Curl {
      * @return $this
      */
     protected function call(array $arr): static {
+        $this->res = [];
+        $this->body = [];
+        $this->request = [];
+        $this->reply_markup = [];
+        if ($this->multi) {
+            return $this->callMulti($arr);
+        }
+        return $this->callInit($arr);
+    }
+
+    /**
+     * @param array $arr
+     * @return $this
+     */
+    protected function callInit(array $arr): static {
+        foreach ($arr as $k => $v) {
+            $v['time'] = time();
+            $v['url'] = trim($this->url, '/') . '/bot' . $this->key . '/' . trim(trim($v['path']), '/');
+            $init = curl_init();
+            curl_setopt($init, CURLOPT_URL, $v['url']);
+            $curl = static::curl_set($v);
+            foreach ($curl as $ck => $cv) {
+                curl_setopt($init, $ck, $cv);
+            }
+            $response = curl_exec($init);
+            $this->body[$k] = curl_errno($init) ? curl_error($init) : $response;
+            $this->request[$k] = [
+                'url'       => $v['url'],
+                'data'      => $v['data'] ?? [],
+                'data_type' => $v['data_type'] ?? false,
+                'exec_time' => (microtime(true) - $v['time']),
+                'end_time'  => date("Y-d-m H:i:s")
+            ];
+            curl_close($init);
+        }
+        return $this;
+    }
+
+    /**
+     * @param array $arr
+     * @return $this
+     */
+    protected function callMulti(array $arr): static {
         $cache = [];
         $this->res = [];
         $this->body = [];
