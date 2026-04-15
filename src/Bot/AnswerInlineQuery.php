@@ -13,7 +13,7 @@ trait AnswerInlineQuery {
      */
     public function answerInlineQuery(string|int $inline_id, array|string $results = [], array $conf = []): static {
         $conf['inline_query_id'] = $inline_id;
-        $conf['results'] = $results;//is_array($results) ? json_encode($results) : $results;
+        $conf['results'] = is_array($results) ? json_encode($results, JSON_UNESCAPED_UNICODE + JSON_UNESCAPED_SLASHES) : $results;
         $data = $this->get_conf([
             // 唯一标识已回答的查询
             'inline_query_id',
@@ -28,7 +28,8 @@ trait AnswerInlineQuery {
             // 描述要在行内查询结果上方显示的按钮的JSON序列化对象
             'button'
         ], $conf);
-        return $this->curl('answerInlineQuery', json_encode($data, JSON_UNESCAPED_UNICODE + JSON_UNESCAPED_SLASHES), 'json');
+        //return $this->curl('answerInlineQuery', json_encode($data, JSON_UNESCAPED_UNICODE + JSON_UNESCAPED_SLASHES), 'json');
+        return $this->curl('answerInlineQuery', $data);
     }
 
     /**
