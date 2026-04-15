@@ -140,7 +140,7 @@ trait AnswerInlineQuery {
         $conf["type"] = "photo";
         $conf["id"] = "photo_" . uniqid();
         $conf["photo_url"] = $photoUrl;
-        $conf["thumbnail_url"] = $conf['thumbnail_url'] ?? (!empty($thumb) ? $thumb : $photoUrl);
+        $conf["thumbnail_url"] = $conf['thumbnail_url'] ?? $thumb;
         $conf["parse_mode"] = strtoupper($conf['parse_mode'] ?? 'html');
         $conf["show_caption_above_media"] = $conf['show_caption_above_media'] ?? false;
         $conf["caption"] = $text;
@@ -190,7 +190,7 @@ trait AnswerInlineQuery {
         $conf["type"] = "gif";
         $conf["id"] = "gif_" . uniqid();
         $conf["gif_url"] = $gifUrl;
-        $conf["thumbnail_url"] = $conf['thumbnail_url'] ?? (!empty($thumb) ? $thumb : $gifUrl);
+        $conf["thumbnail_url"] = $conf['thumbnail_url'] ?? $thumb;
         $conf["parse_mode"] = strtoupper($conf['parse_mode'] ?? 'html');
         $conf["show_caption_above_media"] = $conf['show_caption_above_media'] ?? false;
         $conf["caption"] = $text;
@@ -242,7 +242,7 @@ trait AnswerInlineQuery {
         $conf["type"] = "mpeg4_gif";
         $conf["id"] = "mpeg4_gif_" . uniqid();
         $conf["mpeg4_url"] = $videoUrl;
-        $conf["thumbnail_url"] = $conf['thumbnail_url'] ?? (!empty($thumb) ? $thumb : $videoUrl);
+        $conf["thumbnail_url"] = $conf['thumbnail_url'] ?? $thumb;
         $conf["parse_mode"] = strtoupper($conf['parse_mode'] ?? 'html');
         $conf["show_caption_above_media"] = $conf['show_caption_above_media'] ?? false;
         $conf["caption"] = $text;
