@@ -28,7 +28,7 @@ trait AnswerInlineQuery {
             // 描述要在行内查询结果上方显示的按钮的JSON序列化对象
             'button'
         ], $conf);
-        return $this->curl('answerInlineQuery', $data, 'json');
+        return $this->curl('answerInlineQuery', json_encode($data, JSON_UNESCAPED_UNICODE + JSON_UNESCAPED_SLASHES), 'json');
     }
 
     /**
