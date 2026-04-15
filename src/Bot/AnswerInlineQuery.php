@@ -54,7 +54,7 @@ trait AnswerInlineQuery {
      * @param array      $config
      * @return $this
      */
-    public function answerInlinePhoto(string|int $inline_id, string $photoUrl, string $text = '', string $thumb = "", array $conf = [], array $config = []): static {
+    public function answerInlinePhoto(string|int $inline_id, mixed $photoUrl, string $text = '', mixed $thumb = "", array $conf = [], array $config = []): static {
         return $this->answerInlineQuery($inline_id, [$this->answerInlinePhotoConfig($photoUrl, $text, $thumb, $conf)], $config);
     }
 
@@ -68,7 +68,7 @@ trait AnswerInlineQuery {
      * @param array      $config
      * @return $this
      */
-    public function answerInlineGif(string|int $inline_id, string $gifUrl, string $text = '', string $thumb = "", array $conf = [], array $config = []): static {
+    public function answerInlineGif(string|int $inline_id, mixed $gifUrl, string $text = '', mixed $thumb = "", array $conf = [], array $config = []): static {
         return $this->answerInlineQuery($inline_id, [$this->answerInlineGifConfig($gifUrl, $text, $thumb, $conf)], $config);
     }
 
@@ -82,7 +82,7 @@ trait AnswerInlineQuery {
      * @param array      $config
      * @return $this
      */
-    public function answerInlineMpeg4Gif(string|int $inline_id, string $videoUrl, string $text = '', string $thumb = "", array $conf = [], array $config = []): static {
+    public function answerInlineMpeg4Gif(string|int $inline_id, mixed $videoUrl, string $text = '', mixed $thumb = "", array $conf = [], array $config = []): static {
         return $this->answerInlineQuery($inline_id, [$this->answerInlineMpeg4GifConfig($videoUrl, $text, $thumb, $conf)], $config);
     }
 
@@ -136,7 +136,7 @@ trait AnswerInlineQuery {
      * @param array  $conf     配置
      * @return array
      */
-    public function answerInlinePhotoConfig(string $photoUrl, string $text = '', string $thumb = "", array $conf = []): array {
+    public function answerInlinePhotoConfig(mixed $photoUrl, string $text = '', mixed $thumb = "", array $conf = []): array {
         $conf["type"] = "photo";
         $conf["id"] = "photo_" . uniqid();
         $conf["photo_url"] = $photoUrl;
@@ -186,7 +186,7 @@ trait AnswerInlineQuery {
      * @param array  $conf  配置
      * @return array
      */
-    public function answerInlineGifConfig(string $gifUrl, string $text = '', string $thumb = "", array $conf = []): array {
+    public function answerInlineGifConfig(mixed $gifUrl, string $text = '', mixed $thumb = "", array $conf = []): array {
         $conf["type"] = "gif";
         $conf["id"] = "gif_" . uniqid();
         $conf["gif_url"] = $gifUrl;
@@ -238,7 +238,7 @@ trait AnswerInlineQuery {
      * @param array  $conf  配置
      * @return array
      */
-    public function answerInlineMpeg4GifConfig(string $videoUrl, string $text = '', string $thumb = "", array $conf = []): array {
+    public function answerInlineMpeg4GifConfig(mixed $videoUrl, string $text = '', mixed $thumb = "", array $conf = []): array {
         $conf["type"] = "mpeg4_gif";
         $conf["id"] = "mpeg4_gif_" . uniqid();
         $conf["mpeg4_url"] = $videoUrl;
